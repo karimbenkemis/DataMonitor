@@ -22,5 +22,9 @@ class ApplicationController < ActionController::API
         puts(exception)
         super(exception)
     end
+
+    rescue_from ActionController::ParameterMissing do
+        render json: {}, status: :bad_request
+    end
 end
   

@@ -53,9 +53,15 @@ create user admin with encrypted password 'admin';
 grant all privileges on database data_monitor_development to admin;
 grant all privileges on database data_monitor_production to admin;
 grant all privileges on database data_monitor_test to admin;
+ALTER USER admin CREATEDB;
+ALTER DATABASE data_monitor_test owner to admin;
 
 #Run DB Migration in the project
 $ rake db:migrate
+```
+### Install gem dependencies
+```bash
+$bundle install
 ```
 
 ### Run The project
@@ -65,6 +71,7 @@ $rails s
 
 ### Run specs
 ```bash
+$ bin/rails db:migrate RAILS_ENV=test
 $ bundle exec rspec
 ```
 
